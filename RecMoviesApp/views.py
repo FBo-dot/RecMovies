@@ -5,7 +5,7 @@ Created on Wed Oct 30 16:54:35 2019
 @author: Fabretto
 """
 
-from flask impor Flask
+from flask import Flask
 
 app = Flask(__name__)
 

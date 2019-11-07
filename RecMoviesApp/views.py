@@ -32,10 +32,12 @@ def index():
 def recmovie():
     datamodel, current_path = LoadDataModel()
     rec_imdbid = request.args.get('imdbid')
-    rec_title_year = request.args.get('title_year')
+    rec_title_year = int(request.args.get('title_year'))
     cluster = datamodel[datamodel['imdbid'] == rec_imdbid]['cluster20'].item()
 #    return json.dumps(cluster)
-    return datamodel[datamodel['cluster20'] == cluster].nlargest(5,
+    return datamodel[
+            (datamodel['cluster20'] == cluster) &
+            (datamodel['title_year'] >= rec_title_year)].nlargest(5,
                    'imdb_score').to_json(orient='records')
 #    return json.dumps(*cluster)
 #    return datamodel.nlargest(5,'imdb_score').to_json(orient="records")

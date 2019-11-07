@@ -1,2 +1,2 @@
 # RecMovies
-# Movie recommendation project
+Movie recommendation project

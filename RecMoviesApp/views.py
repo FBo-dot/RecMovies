@@ -5,7 +5,7 @@ Created on Wed Oct 30 16:54:35 2019
 @author: Fabretto
 """
 
-from flask import Flask, url_for, request, jsonify
+from flask import Flask, render_template, url_for, request, jsonify
 
 app = Flask(__name__)
 
@@ -18,10 +18,19 @@ from .utils import LoadDataModel
 import json
 import pandas as pd
 
+datamodel, current_path = LoadDataModel()
+
 @app.route('/')
 @app.route('/index/')
 def index():
-    return "Hello world !"
+    df_result = datamodel.sample(n=5, random_state=42)
+    lines = [dict(
+            zip(df_result.columns,line)) for ndx, line in df_result.iterrows()]
+    result = {'_choose_one': lines}
+
+    return result  
+       
+#    return "Hello world !"
 #    print(datamodel.head())
 #    return json.dumps(datamodel.shape)
 #    return jsonify([[label, content.count()] for label, content in datamodel.iteritems()])
@@ -30,19 +39,25 @@ def index():
     
 @app.route('/recmovie/')
 def recmovie():
-    datamodel, current_path = LoadDataModel()
     rec_imdbid = request.args.get('imdbid')
     rec_title_year = int(request.args.get('title_year'))
     cluster = datamodel[datamodel['imdbid'] == rec_imdbid]['cluster20'].item()
+    df_result = datamodel[
+        (datamodel['cluster20'] == cluster) &
+        (datamodel['title_year'] >= rec_title_year)].nlargest(5,
+            'imdb_score')
+    lines = [dict(
+            zip(df_result.columns,line)) for ndx, line in df_result.iterrows()]
+    result = {'_results': lines}
+
+    return result  
+#    return render_template('recmovie.html',result=result)
+
+
 #    return json.dumps(cluster)
-    return datamodel[
-            (datamodel['cluster20'] == cluster) &
-            (datamodel['title_year'] >= rec_title_year)].nlargest(5,
-                   'imdb_score').to_json(orient='records')
 #    return json.dumps(*cluster)
 #    return datamodel.nlargest(5,'imdb_score').to_json(orient="records")
 #    return rec_imdbid + ' ' + rec_title_year
-  
 #    return "Hello world !"
 #    print(datamodel.head())
 #    return json.dumps(datamodel.shape)

@@ -6,7 +6,6 @@ Created on Wed Oct 30 17:22:23 2019
 """
 
 from flask import Flask # Flask needed
-
 from .views import app  # Flask app instantiation needed
 
 from .utils import LoadDataModel

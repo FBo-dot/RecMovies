@@ -13,12 +13,10 @@ app = Flask(__name__)
 app.config.from_object('config')
 # To get one variable, tape app.config['MY_VARIABLE']
 
-from .utils import LoadDataModel
-
 import json
 import pandas as pd
 
-datamodel, current_path = LoadDataModel()
+from .__init__ import datamodel
 
 @app.route('/')
 @app.route('/index/')

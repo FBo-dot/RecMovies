@@ -9,8 +9,12 @@ import pandas as pd
 
 import os
 
+from .views import app
+from flask import Flask
+
 def LoadDataModel():
-    current_path=os.getcwd()
-    datamodel = pd.read_csv(
-            current_path+"\\datamodel.csv",sep='\t',index_col=0)
-    return datamodel, current_path
+    # Assumes the datamodel file is one level above the instance path,
+    # which defaults to 'instance'
+    datamodel_filename = os.path.join(
+        app.instance_path, app.config['DATA_MODEL_CSV'])
+    return pd.read_csv(datamodel_filename,sep='\t',index_col=0)

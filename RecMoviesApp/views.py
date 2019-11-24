@@ -28,8 +28,9 @@ def index():
             zip(df_result.columns,line)) for ndx, line in df_result.iterrows()]
     result = {'_choose_one': lines}
 
-    return result  
-       
+#    return result  
+    return render_template('recmovie.html',result=result)       
+
 #    return "Hello world !"
 #    print(datamodel.head())
 #    return json.dumps(datamodel.shape)
@@ -50,8 +51,8 @@ def recmovie():
             zip(df_result.columns,line)) for ndx, line in df_result.iterrows()]
     result = {'_results': lines}
 
-    return result  
-#    return render_template('recmovie.html',result=result)
+#    return result  
+    return render_template('recmovie.html',result=result)
 
 
 #    return json.dumps(cluster)

@@ -25,7 +25,7 @@ Jinja2==2.10.1
 llvmlite==0.30.0
 locket==0.2.0
 MarkupSafe==1.1.1
-mkl-fft==1.0.14
+mkl-fft==1.0.6
 mkl-random==1.1.0
 mkl-service==2.3.0
 mock==3.0.5

@@ -27,7 +27,7 @@ locket==0.2.0
 MarkupSafe==1.1.1
 mkl-fft==1.0.6
 mkl-random==1.0.1.1
-mkl-service==2.3.0
+mkl-service
 mock==3.0.5
 msgpack==0.6.1
 multipledispatch==0.6.0

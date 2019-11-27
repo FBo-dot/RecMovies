@@ -25,9 +25,6 @@ Jinja2==2.10.1
 llvmlite==0.30.0
 locket==0.2.0
 MarkupSafe==1.1.1
-mkl-fft==1.0.6
-mkl-random==1.0.1.1
-mkl-service
 mock==3.0.5
 msgpack==0.6.1
 multipledispatch==0.6.0
@@ -35,7 +32,6 @@ networkx==2.4
 numba==0.46.0
 numexpr==2.7.0
 numpy==1.17.2
-odo==0.5.1
 olefile==0.46
 packaging==19.2
 pandas==0.25.2

@@ -12,6 +12,7 @@ app = Flask(__name__)
 # Config options - Make sure you created a 'config.py' file.
 app.config.from_object('config')
 # To get one variable, tape app.config['MY_VARIABLE']
+app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True 
 
 import json
 import pandas as pd
@@ -26,6 +27,7 @@ def index():
             zip(df_result.columns,line)) for ndx, line in df_result.iterrows()]
     result = {'_choose_one': lines}
 
+    result = jsonify(result)
     return result
        
 #    return "Hello world !"
@@ -48,6 +50,7 @@ def recmovie():
             zip(df_result.columns,line)) for ndx, line in df_result.iterrows()]
     result = {'_results': lines}
 
+    result = jsonify(result)
     return result
 #    return render_template('recmovie.html',result=result)
 

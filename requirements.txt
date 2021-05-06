@@ -13,7 +13,7 @@ datashape==0.5.2
 decorator==4.4.1
 distributed==2.6.0
 Flask==1.1.1
-Flask-Cors==3.0.8
+Flask-Cors==3.0.9
 Flask-SQLAlchemy==2.4.0
 gunicorn==20.0.3
 fsspec==0.5.2
